@@ -3,13 +3,30 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
 use App\Models\Berita;
+use App\Models\Banner;
+use App\Models\Ormawa; // Tambahkan import model Ormawa
 use App\Http\Controllers\Front\DosenController;
 
-// 1. Halaman Beranda (Mengirimkan berita & prestasi)
+// 1. Halaman Beranda (Menggabungkan Banner, Ormawa, Berita, & Prestasi)
 Route::get('/', function () {
+    // Ambil data Banner
+    $banners = Banner::where('is_active', true)
+                     ->orderBy('sort_order')
+                     ->get();
+
+    // Ambil data Ormawa/UKM
+    $ormawas = Ormawa::where('is_active', true)
+                     ->orderBy('sort_order')
+                     ->get();
+
+    // Ambil data Berita Per Kategori
     $beritaPerKategori = Berita::latest()->get()->groupBy('category');
+    
+    // Ambil data Prestasi
     $prestasis = \App\Models\Prestasi::latest()->get(); 
-    return view('index', compact('beritaPerKategori', 'prestasis'));
+
+    // Kirim SEMUA data ke view 'index'
+    return view('index', compact('banners', 'ormawas', 'beritaPerKategori', 'prestasis'));
 });
 
 // 2. Halaman Berita

@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Laravel App')</title>
-
+    <title>STMIK DCI</title>
+    
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     
     <link rel="stylesheet" href="css/style.css">
@@ -159,5 +161,22 @@
         document.getElementById("defaultOpen").click();
 
     </script>
+    <script>
+    function toggleMegaMenu() {
+        const megaMenu = document.getElementById('megaMenu');
+        megaMenu.classList.toggle('active');
+    }
+
+    // Fitur tambahan: Klik di luar menu akan otomatis menutup Mega Menu
+    document.addEventListener('click', function(event) {
+        const megaMenu = document.getElementById('megaMenu');
+        const btn = document.querySelector('.expand_mega_btn');
+        
+        // Cek jika klik bukan pada menu dan bukan pada tombol
+        if (!megaMenu.contains(event.target) && !btn.contains(event.target)) {
+            megaMenu.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Resources\Banners\BannerResource;
+use Filament\Enums\ThemeMode; // <-- Tambahan import untuk Mode Terang
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -28,10 +30,25 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            
+            // --- MULAI CUSTOM BRANDING ALA DONEZO & STMIK DCI ---
+            ->brandName('STMIK DCI')
+            ->brandLogo(asset('images/logo.png')) // Memanggil logo kampus
+            ->brandLogoHeight('2.5rem')
+            ->favicon(asset('images/logo.png')) // Favicon kampus
+            ->font('Inter') // Font modern yang dipakai di desain Donezo
+            ->defaultThemeMode(ThemeMode::Light) // Memaksa mode terang (putih)
+            ->sidebarCollapsibleOnDesktop() // Sidebar bisa dikecilkan seperti desain
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Blue, // Hijau ala Donezo
+                'gray' => Color::Slate, // Warna abu-abu yang lebih lembut
             ])
+            // --- AKHIR CUSTOM BRANDING ---
+
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
+            ->resources([
+                BannerResource::class, // <-- Paksaan BannerResource tetap aman di sini
+            ])
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([
                 Dashboard::class,

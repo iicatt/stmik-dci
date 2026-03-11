@@ -123,7 +123,7 @@ body{
 .menu_mobile_layout{
     padding-left: 3vw;
     display: flex;
-    gap: 2vw;
+    gap: 1vw;
 }
 .close_menu{
     display: none;
@@ -2358,4 +2358,104 @@ nav a{
 /* Efek hover untuk tombol */
 .prestasi-card .prestasi-content .btn-detail:hover {
     background-color: #0a1841; /* Warna biru yang sedikit lebih tua saat dihover */
+}
+
+/* Pastikan header posisinya relative agar mega menu nempel di bawahnya */
+header {
+    position: relative;
+}
+
+/* Tombol Icon Expand */
+.expand_mega_btn {
+    background: none;
+    border: none;
+    color: #062157;
+    font-size: 26px; /* Ukuran icon */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-left: 10px;
+}
+.expand_mega_btn:hover {
+    color: #FFCC00;
+}
+
+/* Mega Menu Wrapper (Full Width) */
+.mega_menu_wrapper {
+    position: absolute;
+    top: 100%; /* Turun ke bawah header persis */
+    left: 0;
+    width: 100%;
+    background-color: #062157; /* Warna biru gelap DCI */
+    padding: 40px 5%; /* Jarak atas-bawah dan kiri-kanan */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.05); /* Garis halus pemisah */
+    z-index: 999;
+    
+    /* Animasi Buka Tutup (Transisi halus) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Class Active yang ditrigger oleh JS */
+.mega_menu_wrapper.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Layout Grid 8 Kolom */
+.mega_menu_grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* Otomatis dibagi 8 bagian sama rata */
+    gap: 15px;
+    max-width: 1400px;
+    margin: 0 auto; /* Supaya rata tengah di layar lebar */
+}
+
+/* Styling Judul Kolom */
+.mega_col h4 {
+    color: #FFCC00; /* Kuning emas persis gambar */
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Styling Link */
+.mega_col a {
+    display: block;
+    color: #f0f0f0; /* Putih terang */
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.mega_col a:hover {
+    color: #FFCC00;
+}
+
+/* Agar menu aman di HP */
+@media (max-width: 1024px) {
+    .mega_menu_grid {
+        grid-template-columns: repeat(4, 1fr); /* Jadi 4 kolom di tablet */
+    }
+}
+@media (max-width: 768px) {
+    .mega_menu_grid {
+        grid-template-columns: repeat(2, 1fr); /* Jadi 2 kolom di HP */
+    }
+    .expand_mega_btn {
+        margin-top: 15px;
+    }
+}
+/* Sembunyikan tombol expand mega menu di tampilan Mobile/Tablet */
+@media (max-width: 991px) {
+    .expand_mega_btn {
+        display: none !important;
+    }
 }

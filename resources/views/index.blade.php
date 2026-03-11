@@ -3,27 +3,48 @@
 @section('title', 'STMIK DCI Kota Tasikmalaya')
 
 @section('content')
-    <div class="banner">
-        <div class="swiper swiperBanner">
+   <div class="banner">
+       <div class="swiper swiperBanner">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="banner_box">
-                        <div class="banner_content">
-                            <h1>Sekolah Tinggi Manajemen <font>Informatika</font> & Komputer DCI</h1>
-                            <p>STMIK DCI adalah perguruan tinggi pertama di Priangan Timur yang berfokus pada informatika dan teknologi informasi untuk masa depan yang lebih unggul dan berdaya saing.</p>
-                            <div class="banner_box_layout">
-                                <a href="/tentang-kami">
-                                    <button>Baca Selengkapnya</button>
-                                </a>
+                
+                @foreach($banners as $banner)
+                    <div class="swiper-slide">
+                        
+                        @if($banner->type === 'text')
+                            {{-- PERBAIKAN DI BARIS BAWAH INI: Menambahkan style background-image --}}
+                            <div class="banner_box" style="background-image: url('{{ asset('storage/' . $banner->image) }}'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+                                <div class="banner_content">
+                                    
+                                    @php
+                                        $title = e($banner->title); // Amankan string dari XSS
+                                        if (!empty($banner->highlight_word)) {
+                                            $highlight = e($banner->highlight_word);
+                                            // Ganti kata highlight dengan tag <font>
+                                            $title = str_replace($highlight, "<font>$highlight</font>", $title);
+                                        }
+                                    @endphp
+                                    
+                                    <h1>{!! $title !!}</h1>
+                                    <p>{{ $banner->content }}</p>
+                                    
+                                    <div class="banner_box_layout">
+                                        <a href="{{ $banner->button_url ?? '#' }}">
+                                            <button>{{ $banner->button_text ?? 'Baca Selengkapnya' }}</button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+                        @elseif($banner->type === 'image')
+                            <div class="banner_box_dynamic">
+                                {{-- Gunakan helper asset('storage/...') untuk memanggil gambar dari public/storage --}}
+                                <img src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->title ?? 'Banner Slide STMIK DCI' }}">
+                            </div>
+                        @endif
+                        
                     </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="banner_box_dynamic">
-                        <img src="https://anugrahbaruinterior.com/storage/slides/5AOAlKnlFdo0FHa5EFErbNYmIlNfqu-metaNTA5NDM0MjEwXzE3ODgwOTA3MTczMzM2MzU3XzE5NTQwMzIzMTM4MzE3NTg3MzVfbi5qcGVn-.jpeg" alt="Slide one">
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <div class="swiper-pagination"></div>
         </div>
@@ -129,100 +150,34 @@
     </div>
     <div class="swiper ukmSlide">
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>FORMAT</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>Zaradika</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>Musik</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>LDK</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>Himmaji</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="box_ukm">
-                    <div class="heading_box_ukm">
-                        <h2>Organisasi Mahasiswa</h2>
-                    </div>
-                    <div class="box_ukm_layout">
-                        <img src="{{ asset('images/format.png') }}" alt="Logo FORMAT STMIK DCI Kota Tasikmalaya">
-                        <div class="box_ukm_content">
-                            <h3>Unit Kegiatan Mahasiswa <br/><span>Himatika</span></h3>
-                            <p>FORMAT STMIK DCI (Forum Mahasiswa Fotografi dan Multimedia STMIK DCI) merupakan Unit Kegiatan Mahasiswa (UKM) yang bergerak dalam bidang fotografi, videografi, dan multimedia kreatif di lingkungan kampus STMIK DCI Tasikmalaya.</p>
-                            <a href="#"><button>Baca Selengkapnya</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             
+            @foreach($ormawas as $ormawa)
+                <div class="swiper-slide">
+                    <div class="box_ukm">
+                        <div class="heading_box_ukm">
+                            <h2>Organisasi Mahasiswa</h2>
+                        </div>
+                        <div class="box_ukm_layout">
+                            <img src="{{ asset('storage/' . $ormawa->logo) }}" alt="Logo {{ $ormawa->singkatan }} STMIK DCI">
+                            
+                            <div class="box_ukm_content">
+                                <h3>{{ $ormawa->nama_organisasi }} <br/><span>{{ $ormawa->singkatan }}</span></h3>
+                                
+                                <p>{{ $ormawa->deskripsi }}</p>
+                                
+                                <a href="{{ $ormawa->link_selengkapnya ?? '#' }}">
+                                    <button>Baca Selengkapnya</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
     </div>
     <div class="artikel_home">
         <div class="artikel_home_layout">
