@@ -5,13 +5,13 @@
 @section('content')
 <div class="banner_page">
     <div class="banner_page_box">
-        <h1>Dosen </h1>
-        <h1><font>STMIK DCI</font></h1>    
+        <h1> <font>Dosen</font></h1>
+        <p>Semua Dosen STMIK DCI</p>   
     </div>
 </div>
 
 <div class="container_dosen">
-    <h2 class="section-title">Dosen Program Studi Teknik Informatika</h2>
+    <h2 class="section-title">Dosen STMIK DCI</h2>
 
     <div class="grid_dosen">
         @foreach ($dosens as $dosen)

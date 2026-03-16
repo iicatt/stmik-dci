@@ -5,8 +5,8 @@
 @section('content')
 <div class="banner_page">
     <div class="banner_page_box">
-        <h1>Tentang </h1>
-        <h1><font>PROGRAM STUDI</font></h1>    
+        <h1>Tentang <font>Program Studi</font></h1>
+        <p>Program Studi yang ada di STMIK DCI</p>  
     </div>
     <div class="content_about">
         <p>STMIK DCI memiliki dua program studi unggulan yang dirancang untuk menjawab kebutuhan dunia digital saat ini,yaitu Teknik Informatika (S1) yang memfokuskan pada penguasaan teknologi, pemrograman, dan pengembangan sistem berbasis komputer, serta Manajemen Informatika (D3) yang menekankan pada keterampilan praktis dalam pengelolaan data dan sistem informasi. Kedua program ini didukung oleh kurikulum yang relevan dengan dunia industri, tenaga pengajar profesional, dan lingkungan belajar yang kondusif untuk mencetak lulusan yang kompeten, adaptif, dan siap bersaing di era transformasi digital.</p>

@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\Beritas\Schemas;
 
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Get;
 use Filament\Schemas\Schema;
@@ -28,7 +28,7 @@ class BeritaForm
                     ->dehydrated() // ikut disimpan
                     ->required(),
 
-                Textarea::make('konten')
+                RichEditor::make('konten')
                     ->label('Isi Berita')
                     ->required()
                     ->columnSpanFull(),

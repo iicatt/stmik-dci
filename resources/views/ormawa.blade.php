@@ -22,86 +22,23 @@
 
     <div class="grid_ormawa">
 
-        <!-- Senat Mahasiswa -->
+        {{-- Looping Data Ormawa dari Database --}}
+        @forelse($ormawas as $item)
         <div class="ormawa_card">
-            <img src="/images/ormawa/senat.png" alt="Senat Mahasiswa">
+            {{-- Asumsi nama kolom gambar kamu adalah 'gambar' atau 'logo' --}}
+            <img src="{{ asset('storage/' . $item->logo) }}" alt="{{ $item->nama }}">
+            
             <div class="ormawa_info">
-                <h3>Senat Mahasiswa</h3>
-                <p>Badan legislatif mahasiswa yang berperan dalam pembentukan kebijakan kampus dan pengawasan ormawa.</p>
+                {{-- Asumsi nama kolomnya 'nama' dan 'deskripsi' --}}
+                <h3>{{ $item->nama }}</h3>
+                <p>{{ $item->deskripsi }}</p>
             </div>
         </div>
-
-        <!-- BEM -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/bem.png" alt="BEM">
-            <div class="ormawa_info">
-                <h3>BEM</h3>
-                <p>Badan Eksekutif Mahasiswa sebagai pelaksana kegiatan kemahasiswaan dan penyalur aspirasi mahasiswa STMIK DCI.</p>
-            </div>
+        @empty
+        <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+            <p style="color: #fff; font-size: 18px;">Belum ada data Ormawa yang ditambahkan.</p>
         </div>
-
-        <!-- HIMATIKA -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/himatika.png" alt="HIMATIKA">
-            <div class="ormawa_info">
-                <h3>HIMATIKA</h3>
-                <p>Himpunan Mahasiswa Teknik Informatika sebagai wadah akademik dan pengembangan minat mahasiswa TI.</p>
-            </div>
-        </div>
-
-        <!-- HIMMAJI -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/himmaji.png" alt="HIMMAJI">
-            <div class="ormawa_info">
-                <h3>HIMMAJI</h3>
-                <p>Himpunan Mahasiswa Manajemen Informatika yang berfokus pada pengembangan kemampuan manajerial dan teknologi informasi.</p>
-            </div>
-        </div>
-
-        <!-- UKM FORMAT -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/format.png" alt="UKM FORMAT">
-            <div class="ormawa_info">
-                <h3>UKM FORMAT</h3>
-                <p>Unit Kegiatan Mahasiswa Fotografi, Multimedia, dan Art (FORMAT) yang mewadahi kreativitas di bidang seni visual dan dokumentasi.</p>
-            </div>
-        </div>
-
-        <!-- UKM MUSIK -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/musik.png" alt="UKM Musik">
-            <div class="ormawa_info">
-                <h3>UKM Musik</h3>
-                <p>UKM yang menyalurkan minat dan bakat mahasiswa di bidang musik dan seni pertunjukan.</p>
-            </div>
-        </div>
-
-        <!-- UKM LDK -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/ldk.png" alt="UKM LDK">
-            <div class="ormawa_info">
-                <h3>UKM LDK</h3>
-                <p>Lembaga Dakwah Kampus sebagai wadah pembinaan spiritual dan kegiatan keagamaan mahasiswa STMIK DCI.</p>
-            </div>
-        </div>
-
-        <!-- UKM OLAHRAGA -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/olahraga.png" alt="UKM Olahraga">
-            <div class="ormawa_info">
-                <h3>UKM Olahraga</h3>
-                <p>Mengembangkan semangat sportivitas dan kesehatan jasmani melalui berbagai cabang olahraga.</p>
-            </div>
-        </div>
-
-        <!-- UKM ZARADIKA -->
-        <div class="ormawa_card">
-            <img src="/images/ormawa/zaradika.png" alt="UKM Zaradika">
-            <div class="ormawa_info">
-                <h3>UKM Zaradika</h3>
-                <p>Unit kegiatan mahasiswa yang berfokus pada kepedulian sosial, penanggulangan bencana, dan pengabdian masyarakat.</p>
-            </div>
-        </div>
+        @endforelse
 
     </div>
 </div>

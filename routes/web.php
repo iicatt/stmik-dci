@@ -30,9 +30,27 @@ Route::get('/', function () {
 });
 
 // 2. Halaman Berita
+// Route untuk Halaman Daftar Berita
 Route::get('/berita', function () {
-    $beritas = Berita::latest()->get(); 
-    return view('berita', compact('beritas'));
+    // Mengambil berita dengan Pagination (batas 6 berita per halaman)
+    $beritas = \App\Models\Berita::latest()->paginate(6);
+    
+    // Mengambil 4 berita terbaru khusus untuk ditaruh di Sidebar Kanan
+    $beritaTerbaru = \App\Models\Berita::latest()->take(4)->get(); 
+
+    return view('berita', compact('beritas', 'beritaTerbaru'));
+});
+// Rute untuk Halaman Detail Berita
+Route::get('/berita/{slug}', function ($slug) {
+    $berita = \App\Models\Berita::where('slug', $slug)->firstOrFail();
+    
+    // Ambil 4 berita terbaru untuk sidebar kanan
+    $beritaTerbaru = \App\Models\Berita::where('id', '!=', $berita->id)
+                                      ->latest()
+                                      ->take(4)
+                                      ->get();
+
+    return view('detailberita', compact('berita', 'beritaTerbaru'));
 });
 
 // 3. Halaman Dosen (Dinamis menggunakan Controller)
@@ -53,7 +71,12 @@ Route::get('/ti', function () {
     return view('ti');
 });
 Route::get('/ormawa', function () {
-    return view('ormawa');
+    // Mengambil data ormawa yang aktif, diurutkan berdasarkan sort_order
+    $ormawas = \App\Models\Ormawa::where('is_active', true)
+                                 ->orderBy('sort_order')
+                                 ->get();
+                                 
+    return view('ormawa', compact('ormawas'));
 });
 Route::get('/kontak', function () {
     return view('contact');

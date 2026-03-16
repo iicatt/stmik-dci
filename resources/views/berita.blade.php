@@ -1,58 +1,61 @@
-
 @extends('layouts.app')
 
-@section('title', 'Hasil Seleksi Wawancara Calon Mahasiswa Baru - STMIK DCI')
+@section('title', 'Berita - STMIK DCI')
 
 @section('content')
 
-
-    <div class="container_berita_detail"><div class="content_berita">
-        <div class="breadcrumb">
-            <a href="/">Home</a> <span>›</span> <a href="/berita">Berita</a> <span>›</span> 
-            <span>{{ $berita->judul }}</span>
-        </div>
-
-        <h2 class="judul_berita">
-            {{ $berita->judul }}
-        </h2>
-
-        <div class="gambar_berita">
-            <img src="{{ asset('storage/' . $berita->thumbnail) }}" alt="{{ $berita->judul }}">
-        </div>
-
-        <div class="isi_berita">
-            {!! $berita->konten !!}
-        </div>
-
-        @if ($berita->lampiran)
-        <p class="lampiran">
-            📎 <a href="{{ asset('storage/' . $berita->lampiran) }}" target="_blank">Unduh Lampiran</a>
-        </p>
-        @endif
+<div class="banner_page">
+    <div class="banner_page_box">
+        <h1>Berita </h1>
+        <h1><font>STMIK DCI</font></h1>    
     </div>
-    @endsection
-
-    <!-- SIDEBAR -->
-    <aside class="sidebar_berita">
-        <h3>Terbaru</h3>
-        <ul>
-            <li>
-                <img src="/images/thumb1.png" alt="">
-                <a href="#">Mahasiswa STMIK DCI Raih JUARA 1 Wordpress Case Competition 2024 Tingkat Nasional</a>
-            </li>
-            <li>
-                <img src="/images/thumb2.png" alt="">
-                <a href="#">Workshop Fotografi 2024: Membangun Karya Visual Kreatif</a>
-            </li>
-            <li>
-                <img src="/images/thumb3.png" alt="">
-                <a href="#">PKKMB STMIK DCI 2024: Membangun Generasi Digital yang Inovatif</a>
-            </li>
-            <li>
-                <img src="/images/thumb4.png" alt="">
-                <a href="#">Dosen STMIK DCI Rilis Riset Sistem Informasi Geospasial</a>
-            </li>
-        </ul>
-    </aside>
 </div>
+
+<div class="container_halaman_berita">
+    
+    <div class="kiri_berita">
+        
+        <div class="breadcrumb" style="margin-bottom: 30px; color: #666; font-size: 16px;">
+            <iconify-icon icon="mdi:home" style="font-size: 20px; vertical-align: middle;"></iconify-icon> 
+            <span style="margin: 0 10px;">></span> 
+            <a href="/" style="text-decoration: none; color: #666;">Home</a> 
+            <span style="margin: 0 10px;">></span> 
+            <strong>Berita</strong>
+        </div>
+
+        <div class="grid_berita">
+            @forelse($beritas as $item)
+            <a href="/berita/{{ $item->slug }}" class="card_berita">
+                <img src="{{ asset('storage/' . $item->thumbnail) }}" alt="{{ $item->judul }}">
+                <div class="tanggal">{{ $item->created_at->format('d/m/Y') }}</div>
+                <h3>{{ $item->judul }}</h3>
+                <p>{{ Str::limit(strip_tags($item->isi), 80) }}</p>
+            </a>
+            @empty
+                <p>Belum ada berita yang diterbitkan.</p>
+            @endforelse
+        </div>
+
+        <div class="pagination" style="margin-top: 40px;">
+            {{ $beritas->links() }}
+        </div>
+    </div>
+
+    <div class="kanan_sidebar sidebar_terbaru">
+        <h2>Terbaru</h2>
+        <div class="list_terbaru">
+            @foreach($beritaTerbaru as $terbaru)
+            <div class="item_terbaru">
+                {{-- Kotak abu-abu seperti di desain, atau bisa diisi gambar asli jika mau --}}
+                <img src="{{ asset('storage/' . $terbaru->thumbnail) }}" alt="">
+                <a href="/berita/{{ $terbaru->slug }}">
+                    {{ $terbaru->judul }}
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+</div>
+
 @endsection
