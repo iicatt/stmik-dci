@@ -10,13 +10,13 @@
                 </div>   
                 <p>Nama domain stmikdci.ac.id adalah milik STMIK DCI, sebuah institusi pendidikan tinggi yang menyediakan program studi dan informasi terkait bidang teknologi informasi, komputer, serta pengembangan sumber daya manusia di bidang digital.</p>
                 <div class="social_media_footer">
-                    <a href="https://www.instagram.com/anugrahbarugrup/" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/stmikdci/" target="_blank" rel="noopener noreferrer">
                         <div class="social_media_box">
                             <iconify-icon icon="mdi:instagram"></iconify-icon>
                         </div>
                     </a>
                     
-                    <a href="https://www.tiktok.com/@anugrah_baruinterior" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.tiktok.com/@stmikdci" target="_blank" rel="noopener noreferrer">
                         <div class="social_media_box">
                             <iconify-icon icon="ic:baseline-tiktok"></iconify-icon>
                         </div>
