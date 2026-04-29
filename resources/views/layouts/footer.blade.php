@@ -43,8 +43,8 @@
                 <div class="menu_footer_box">
                     <h3>Akses Cepat</h3>
                     <ul>
-                        <li><a href="/lms">LMS</a></li>
-                        <li><a href="/siak">SIAK</a></li>
+                        <li><a href="https://lms.stmik-dci.ac.id/">LMS</a></li>
+                        <li><a href="http://siak.stmik-dci.ac.id/">SIAK</a></li>
                         <li><a href="/jurnal">Jurnal</a></li>
                         <li><a href="/spmi">SPMI</a></li>
                         <li><a href="/ormawa">ORMAWA</a></li>
@@ -57,7 +57,7 @@
                 <li><a href="/syarat-ketentuan">Syarat & Ketentuan</a></li>
                 <li><a href="/kebijakan-privasi">Kebijakan Privasi</a></li>
             </ul>
-            <span>© 2025 STMIK DCI | ID</span>
+            <span>©2026 STMIK DCI | ID | All Rights Reserved |MIF2295</span>
         </div>
         <div class="footer_third">
             <p><span>Disclaimer:</span> Kami tidak bertanggung jawab atas konten situs pihak ketiga. Verifikasi informasi dan konsultasikan dengan profesional sebelum mengambil keputusan.</p>
